@@ -1,4 +1,5 @@
 import Loader from 'components/Loader/Loader';
+
 import React from 'react';
 
 import { useEffect } from 'react';
@@ -10,8 +11,8 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
-
 import { fetchMovieDetails } from 'services/TmbdApi';
+
 import styles from './MovieDetails.module.css';
 
 const MovieDetails = ({ id }) => {
@@ -23,18 +24,7 @@ const MovieDetails = ({ id }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  //   const handleClick = () => navigate(location?.state?.from ?? '/');
-
-  //   const handleClick = () => {
-  //     navigate(-1);
-  //   };
-  const handleClick = () => {
-    if (location.state && location.state.from) {
-      navigate(location.state.from);
-    } else {
-      navigate('/');
-    }
-  };
+  const handleClick = () => navigate(location?.state?.from ?? '/');
 
   useEffect(() => {
     setIsLoading(true);
@@ -55,7 +45,9 @@ const MovieDetails = ({ id }) => {
 
   return (
     <>
+      {/* {isLoading && <Loader />} */}
       {error && <div>{error}</div>}
+
       <div className={styles.movie}>
         <button type="text" onClick={handleClick} className={styles.backButton}>
           Go back
@@ -69,13 +61,17 @@ const MovieDetails = ({ id }) => {
             alt={movie.title ?? movie.name}
           />
           <div className={styles.description}>
-            <h2>{movie.title ?? movie.name}</h2>
-            <p>User Score: {Math.round(movie.popularity)} % </p>
-            <h3>Overview</h3>
-            <p>{movie.overview}</p>
-            <h3>Genres</h3>
+            <h2 className={styles.title}>{movie.title ?? movie.name}</h2>
+            <p className={styles.userScore}>
+              User Score: {Math.round(movie.popularity)} %{' '}
+            </p>
+            <h3 className={styles.overviewTitle}>Overview</h3>
+            <p className={styles.overview}>{movie.overview}</p>
+            <h3 className={styles.genresTitle}>Genres</h3>
             {movie.genres.map(({ id, name }) => (
-              <p key={id}>{name}</p>
+              <p key={id} className={styles.genre}>
+                {name}
+              </p>
             ))}
           </div>
         </div>

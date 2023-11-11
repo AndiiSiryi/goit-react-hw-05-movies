@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { fetchTrending } from 'services/TmbdApi';
 import Loader from 'components/Loader/Loader';
-import MovieCard from 'components/MovieCard/MovieCard';
+
 import styles from './Home.module.css';
+import { useLocation } from 'react-router-dom';
+import MovieList from 'components/MovieList/MovieList';
 
 function Home() {
+  const location = useLocation();
+
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -29,19 +33,8 @@ function Home() {
       {isLoading && <Loader />}
       {error && <div>{error}</div>}
       <div>
-        <h2>Trending Movies</h2>
-        <ul className={styles.movieList}>
-          {Array.isArray(movies) &&
-            movies?.map(movie => (
-              <MovieCard
-                key={movie.id}
-                id={movie.id}
-                title={movie.title}
-                name={movie.name}
-                posterPath={movie.poster_path}
-              />
-            ))}
-        </ul>
+        <h2 className={styles.movieTitle}>Trending Movies</h2>
+        <MovieList movies={movies} prevLocation={location} />
       </div>
     </>
   );

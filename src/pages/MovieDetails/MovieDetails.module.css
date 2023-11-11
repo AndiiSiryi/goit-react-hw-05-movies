@@ -1,16 +1,16 @@
 .movie {
   display: flex;
-  margin-left: 15px;
+  /* margin-left: 15px; */
 }
 
 .details {
   display: flex;
-  margin-left: 15px;
+  /* margin-left: 15px; */
 }
 
 .description {
   display: block;
-  margin-left: 15px;
+  margin-left: 14px;
   padding-top: 20px;
 }
 
@@ -30,6 +30,7 @@
   background-color: rgb(240, 240, 240);
   box-shadow: rgba(34, 60, 80, 0.2) 1px 2px 5px 0px;
   border: none;
+  margin-top: 14px;
 }
 
 .backButton:hover {
@@ -60,4 +61,41 @@
   gap: 16px;
   border-top: 2px solid rgb(194, 194, 194);
   border-bottom: 2px solid rgb(194, 194, 194);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.userScore {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.overviewTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.overview {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #555;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.genresTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.genre {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #555;
 }
