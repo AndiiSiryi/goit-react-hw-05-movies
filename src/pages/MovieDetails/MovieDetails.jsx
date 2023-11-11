@@ -1,6 +1,6 @@
 import Loader from 'components/Loader/Loader';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -100,7 +100,9 @@ const MovieDetails = ({ id }) => {
             <p>Reviews</p>
           </NavLink>
         </div>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </div>
     </>
   );

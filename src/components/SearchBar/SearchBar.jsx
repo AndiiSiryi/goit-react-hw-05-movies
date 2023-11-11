@@ -17,7 +17,7 @@ const SearchBar = ({ onSearch }) => {
     }
 
     onSearch(searchQuery);
-    setSearchQuery('');
+    // setSearchQuery('');
   };
 
   return (
