@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 
 import styles from './SearchBar.module.css';
 
 const SearchBar = ({ onSearch }) => {
+  const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleQuerySearch = event => {
@@ -19,6 +21,14 @@ const SearchBar = ({ onSearch }) => {
     onSearch(searchQuery);
     // setSearchQuery('');
   };
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const savedSearchQuery = queryParams.get('query');
+    if (savedSearchQuery) {
+      setSearchQuery(savedSearchQuery);
+    }
+  }, [location.search]);
 
   return (
     <>
